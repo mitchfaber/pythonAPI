@@ -11,7 +11,7 @@ app.config["DEBUG"] = True
 def api_get():
     try: 
         # opening database connection here!
-        conn = MySQLdb.connect("mitchfaber.ca","mitchfab_faberm","password1","mitchfab_dotnetcoreSamples")
+        conn = MySQLdb.connect("DOMAIN NAME","USERNAME","PASSWORD","DB NAME")
         # prepare a cursor object using cursor() method
         cursor = conn.cursor(MySQLdb.cursors.DictCursor)
         # this is how to execute a SQL query with Python
