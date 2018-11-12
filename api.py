@@ -7,7 +7,7 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/data/get', methods=['GET'])
+@app.route('/get', methods=['GET'])
 def api_get():
     try: 
         # opening database connection here!
@@ -26,19 +26,19 @@ def api_get():
         conn.close()
 
 
-@app.route('/data/post', methods=['POST'])
+@app.route('/post', methods=['POST'])
 def api_post():
     try: 
         data = request.get_json()
         newTitle = data["title"]
-        newContent = data["content"]
+        newAuthor = data["author"]
         # opening database connection here!
         conn = MySQLdb.connect("mitchfaber.ca","mitchfab_faberm","password1","mitchfab_dotnetcoreSamples")
         # prepare a cursor object using cursor() method
         cursor = conn.cursor(MySQLdb.cursors.DictCursor)
-        sql = "INSERT INTO tblStuff (title, content) VALUES (%s, %s)"
+        sql = "INSERT INTO tblStuff (title, author) VALUES (%s, %s)"
 
-        val = (newTitle, newContent)
+        val = (newTitle, newAuthor)
         # this is how to execute a SQL query with Python
         cursor.execute(sql, val)
         conn.commit()
@@ -52,20 +52,20 @@ def api_post():
         conn.close()
 
 
-@app.route('/data/put', methods=['PUT'])
+@app.route('/put', methods=['PUT'])
 def api_put():
     try: 
         id = request.args.get("id") 
         data = request.get_json()
         newTitle = data["title"]
-        newContent = data["content"]
+        newAuthor = data["author"]
         # opening database connection here!
         conn = MySQLdb.connect("mitchfaber.ca","mitchfab_faberm","password1","mitchfab_dotnetcoreSamples")
         # prepare a cursor object using cursor() method
         cursor = conn.cursor(MySQLdb.cursors.DictCursor)
-        sql = "UPDATE tblStuff SET title=%s, content=%s WHERE ID=%s"
+        sql = "UPDATE tblStuff SET title=%s, author=%s WHERE ID=%s"
 
-        val = (newTitle, newContent, id)
+        val = (newTitle, newAuthor, id)
         # this is how to execute a SQL query with Python
         cursor.execute(sql, val)
         conn.commit()
@@ -79,7 +79,7 @@ def api_put():
         conn.close()
 
 
-@app.route('/data/delete', methods=['DELETE'])
+@app.route('/delete', methods=['DELETE'])
 def api_delete():
     try: 
         id = request.args.get("id") 
