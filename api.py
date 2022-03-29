@@ -33,7 +33,7 @@ def api_post():
         newTitle = data["title"]
         newAuthor = data["author"]
         # opening database connection here!
-        conn = MySQLdb.connect("mitchfaber.ca","mitchfab_faberm","password1","mitchfab_dotnetcoreSamples")
+        conn = MySQLdb.connect("DOMAIN NAME","USERNAME","PASSWORD","DB NAME")
         # prepare a cursor object using cursor() method
         cursor = conn.cursor(MySQLdb.cursors.DictCursor)
         sql = "INSERT INTO tblStuff (title, author) VALUES (%s, %s)"
@@ -60,7 +60,7 @@ def api_put():
         newTitle = data["title"]
         newAuthor = data["author"]
         # opening database connection here!
-        conn = MySQLdb.connect("mitchfaber.ca","mitchfab_faberm","password1","mitchfab_dotnetcoreSamples")
+        conn = MySQLdb.connect("DOMAIN NAME","USERNAME","PASSWORD","DB NAME")
         # prepare a cursor object using cursor() method
         cursor = conn.cursor(MySQLdb.cursors.DictCursor)
         sql = "UPDATE tblStuff SET title=%s, author=%s WHERE ID=%s"
@@ -84,7 +84,7 @@ def api_delete():
     try: 
         id = request.args.get("id") 
         # opening database connection here!
-        conn = MySQLdb.connect("mitchfaber.ca","mitchfab_faberm","password1","mitchfab_dotnetcoreSamples")
+        conn = MySQLdb.connect("DOMAIN NAME","USERNAME","PASSWORD","DB NAME")
         # prepare a cursor object using cursor() method
         cursor = conn.cursor(MySQLdb.cursors.DictCursor)
         sql = "DELETE FROM tblStuff WHERE ID=%s"
